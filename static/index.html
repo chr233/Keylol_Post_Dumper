@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>数据查看</title>
+  <link rel="stylesheet" href="layui/css/layui.css">
+</head>
+
+<body>
+
+  <div class="layui-container">
+
+    <table id="demo" lay-filter="test"></table>
+
+  </div>
+
+  <!-- 引入 layui.js 的 <script> 标签最好放置在 html 末尾 -->
+  <script src="layui/layui.js"></script>
+  <script>
+    layui.use('table', function () {
+      var table = layui.table;
+
+      table.render({
+        elem: '#demo'
+        , cellMinWidth: 20
+        , height: "full-20"
+        , url: '/api/posts'
+        , page: {
+          limit: 100,
+          limits: [100, 200, 500, 1000, 2000]
+        }
+        , cols: [[
+          { type: 'checkbox' }
+          , { field: 'id', title: 'ID', sort: true }
+          , { field: 'tid', title: '帖子ID', sort: true }
+          , { field: 'post_url', title: '链接' }
+          , { field: 'post_title', title: '标题' }
+          , { field: 'author_nick', title: '作者' }
+          , { field: 'author_uid', title: '用户ID', sort: true }
+          , { field: 'post_date', title: '发布日期', sort: true }
+          , { field: 'content', title: '正文' }
+          , { field: 'game_list', title: '提及游戏', sort: true }
+        ]]
+      });
+    });
+  </script>
+</body>
+
+</html>
