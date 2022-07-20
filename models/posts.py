@@ -2,7 +2,7 @@
 # @Author       : Chr_
 # @Date         : 2021-03-16 18:22:12
 # @LastEditors  : Chr_
-# @LastEditTime : 2022-07-17 23:53:27
+# @LastEditTime : 2022-07-20 12:32:38
 # @Description  : 用户数据库模型
 '''
 
@@ -23,12 +23,14 @@ class Posts(models.Model):
     post_date = fields.CharField(max_length=50, description='帖子发布时间')
     content = fields.TextField(default='', description='帖子内容')
     game_list = fields.TextField(default='', description='游戏列表')
+    game_bbcode = fields.TextField(default='', description='游戏列表2')
+    game_excel = fields.TextField(default='', description='游戏列表3')
 
     def __str__(self) -> str:
         return self.post_title
 
     class Meta:
-        table_description = "This table contains a list of all the events"
+        table_description = "帖子数据"
         indexes = ["tid", "post_title"]
 
 

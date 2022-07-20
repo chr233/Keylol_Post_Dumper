@@ -2,7 +2,7 @@
 # @Author       : Chr_
 # @Date         : 2021-05-17 10:39:02
 # @LastEditors  : Chr_
-# @LastEditTime : 2022-07-19 08:35:25
+# @LastEditTime : 2022-07-20 13:37:29
 # @Description  : 历史记录查询
 '''
 
@@ -133,7 +133,8 @@ async def as_excel():
     ws.cell(row=1, column=6).value = '作者链接'
     ws.cell(row=1, column=7).value = '发布时间'
     ws.cell(row=1, column=8).value = '帖子正文'
-    ws.cell(row=1, column=9).value = '提及游戏'
+    ws.cell(row=1, column=9).value = '提及游戏ID'
+    ws.cell(row=1, column=9).value = '提及游戏链接'
 
     i = 2
 
@@ -148,6 +149,7 @@ async def as_excel():
         ws.cell(row=i, column=7).value = post.post_date
         ws.cell(row=i, column=8).value = post.content
         ws.cell(row=i, column=9).value = post.game_list
+        ws.cell(row=i, column=9).value = post.game_excel
         i += 1
 
     wb.save('output.xlsx')
@@ -176,7 +178,7 @@ async def as_excel():
     for post in all_posts:
         lines.append('')
         lines.append('[tr]')
-        lines.append(f'[td]{post.game_list}[/td]')
+        lines.append(f'[td]{post.game_bbcode or post.game_list}[/td]')
         lines.append(f'[td]{post.author_nick}[/td]')
         lines.append(f'[td]{post.author_uid}[/td]')
         lines.append(f'[td]{post.post_date}[/td]')
